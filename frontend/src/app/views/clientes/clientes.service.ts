@@ -14,6 +14,27 @@ export class ClienteService {
   listarClientes(): Observable<Cliente[]> {
     return this.http
       .get<Cliente[]>(ApiUrl.listarClientes)
-      .pipe(map((res) => res.map((c, i) => ({ ...c, posicao: i }))));
+      .pipe(map((res) => res.map((c, i) => ({ ...c, posicao: i }))));//ES6 probably
   }
+
+  listarUmCliente(id: string): Observable<Cliente> {
+    return this.http
+      .get<Cliente>(`${ApiUrl.BASE}/${id}`);
+  }
+
+  adicionarCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http
+      .post<Cliente>(ApiUrl.adicionarCliente, cliente);
+  }
+
+  editarCliente(cliente: Cliente, id: string): Observable<Cliente> {
+    return this.http
+      .put<Cliente>(`${ApiUrl.BASE}/${id}`, cliente);
+  }
+
+  excluirCliente(id: string): Observable<Cliente> {
+    return this.http
+      .delete<Cliente>(`${ApiUrl.BASE}/${id}`);
+  }
+
 }

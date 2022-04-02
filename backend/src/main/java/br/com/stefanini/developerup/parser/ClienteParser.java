@@ -20,6 +20,17 @@ public class ClienteParser {
         dto.setEmail(entidade.getEmail());
         dto.setNome(entidade.getNome());
         dto.setContato(entidade.getContato());
+        dto.setQtdEmprestimos(entidade.getQtdEmprestimos());
         return dto;
+    }
+
+    public Cliente dtoToCliente(ClienteDto entidade) { //Método para fazer o contrário, pois se recebermos um dto, teremos de inserir no bd um cliente por exemplo
+        Cliente cliente = new Cliente();
+
+        cliente.setEmail(entidade.getEmail());
+        cliente.setNome(entidade.getNome());
+        cliente.setContato(entidade.getContato());
+        cliente.setQtdEmprestimos(entidade.getQtdEmprestimos());
+        return cliente;
     }
 }

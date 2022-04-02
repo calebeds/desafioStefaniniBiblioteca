@@ -71,7 +71,7 @@ Cadastro de empréstimos
 
 Observação:
 
-1. Usar qualquer API externa para validar o ISBN do livro cadastrado, API sugerida: <https://openlibrary.org/dev/docs/api/books>
+1. Usar qualquer API externa para validar o ISBN do livro cadastrado, API sugerida: < >
    Exemplo de uso: <https://openlibrary.org/books/OL7353617M.json>
 1. Use a data de início e data de entrega para determinar se um livro se encontra emprestado ou não. Use também essa informação aliada da quantidade de exemplares para saber se todos os livros estão emprestados.
 

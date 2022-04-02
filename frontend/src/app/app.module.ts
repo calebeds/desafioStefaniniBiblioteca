@@ -17,6 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +27,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HomeComponent,
     ListarClientesComponent,
     FooterComponent,
+    CadastroClienteComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTableModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

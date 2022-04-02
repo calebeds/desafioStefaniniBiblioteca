@@ -28,6 +28,7 @@ describe('ClientesService', () => {
         nome: 'teste',
         email: 'teste',
         contato: 'teste',
+        qtdEmprestimos: 0
       },
     ];
 

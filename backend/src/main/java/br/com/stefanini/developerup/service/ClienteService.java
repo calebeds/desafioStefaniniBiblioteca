@@ -25,4 +25,33 @@ public class ClienteService {
     public List<ClienteDto> listar(){
         return dao.listar().stream().map(ClienteParser.get()::dto).collect(Collectors.toList());
     }
+
+    public ClienteDto listarUmCliente(String busca) {
+        return dao.listar()
+            .stream()
+            .map(ClienteParser.get()::dto)
+            .filter(pessoa -> {
+                System.out.println(pessoa);
+                return Boolean.TRUE.equals(pessoa.getNome().contains(busca) || pessoa.getEmail().equalsIgnoreCase(busca)); //Prevent null pointer or try to
+            })
+            .findFirst() //An optional
+            .get();
+         
+    }
+
+
+    public void inserir(ClienteDto cliente) {
+            cliente.setQtdEmprestimos(0);
+            dao.inserir(
+                ClienteParser.get().dtoToCliente(cliente)//Transformando o dto em cliente para ser inserido no bd
+            );
+    }
+
+    public void editar(ClienteDto cliente, String busca) {
+        dao.editar(cliente, busca);
+    }
+
+    public void deletar(String busca) {
+        dao.deletar(busca);
+    }
 }

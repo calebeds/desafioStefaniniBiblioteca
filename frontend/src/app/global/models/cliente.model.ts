@@ -3,4 +3,5 @@ export default interface Cliente {
   nome: string;
   email: string;
   contato: string;
+  qtdEmprestimos: number;
 }

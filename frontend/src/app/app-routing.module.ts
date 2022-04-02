@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
 import { ListarClientesComponent } from './views/clientes/listar-clientes/listar-clientes.component';
 import { HomeComponent } from './views/home/home.component';
 
@@ -14,6 +15,11 @@ const routes: Routes = [
     component: ListarClientesComponent,
     data: { pageTitle: 'Listar Clientes' },
   },
+  {
+    path: 'clientes/cadastro',
+    component: CadastroClienteComponent
+
+  }
 ];
 
 @NgModule({

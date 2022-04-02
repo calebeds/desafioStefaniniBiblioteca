@@ -1,0 +1,55 @@
+<div class="container" style="color: black;">
+
+    <mat-card>
+        <mat-card-title>Cadastro de Clientes</mat-card-title>
+        <mat-card-subtitle>Vefique seu dados corretamente!</mat-card-subtitle>
+
+        <div class="card-body">
+            <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="nome" class="mb-2"><strong style="font-size: large; ">Nome</strong></label>
+                    <input type="text" name="nome" id="nome" class="form-control" formControlName="nome">
+                    <span class="text-danger"
+                        *ngIf="(registerFormControl.nome.touched || submitted) && registerFormControl.nome.errors?.required">
+                        Nome obrigatório
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-2"><strong style="font-size: large; ">Email</strong></label>
+                    <input type="text" class="form-control" formControlName="email">
+                        <div class="row">
+                            <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                            Email obrigatório
+                        </span>
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                            Escreva um email válido
+                        </span>
+                        <span *ngIf="registerFormControl.email.valid && registerFormControl.email.touched" class="alert alert-success mt-2">
+                            Campo corretamente preenchido!
+                        </span>
+                    </div>
+                    
+                    
+                </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-2"><strong style="font-size: large; ">Telefone</strong></label>
+                    <input type="text" class="form-control" formControlName="telefone">
+                    <span class="text-danger"
+                        *ngIf="(registerFormControl.telefone.touched || submitted) && registerFormControl.telefone.errors?.required">
+                        Telefone is required
+                    </span>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    
+                    <mat-card-actions>
+                        <button mat-raised-button  type="submit">Cadastrar</button>
+                      </mat-card-actions>
+                </div>
+            </form>
+        </div>
+       
+      </mat-card>
+    

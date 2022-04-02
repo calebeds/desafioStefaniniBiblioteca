@@ -2,6 +2,7 @@ package br.com.stefanini.developerup.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,6 +27,9 @@ public class Cliente extends PanacheEntityBase {
     @Column(name = "contato")
     private String contato;
 
+    @Column(name = "qtdEmprestimos")
+    private int qtdEmprestimos;
+
     public String getEmail() {
         return email;
     }
@@ -49,4 +53,16 @@ public class Cliente extends PanacheEntityBase {
     public void setContato(String contato) {
         this.contato = contato;
     }
+
+    public int getQtdEmprestimos() {
+        return qtdEmprestimos;
+    }
+
+    public void setQtdEmprestimos(int qtdEmprestimos) {
+        this.qtdEmprestimos = qtdEmprestimos;
+    }
+
+    
+
+    
 }
