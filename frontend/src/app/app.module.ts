@@ -20,6 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { PhonemaskDirective } from './global/diretivas/phonemask.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
     ListarClientesComponent,
     FooterComponent,
     CadastroClienteComponent,
+    PhonemaskDirective
   ],
   imports: [
     CommonModule,

@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'clientes/cadastro',
     component: CadastroClienteComponent
 
+  },
+  {
+    path: 'clientes/cadastro/:id', 
+    component: CadastroClienteComponent
   }
 ];
 

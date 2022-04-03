@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import Cliente from 'src/app/global/models/cliente.model';
 import { ClienteService as ClienteService } from '../clientes.service';
@@ -15,7 +16,8 @@ export class ListarClientesComponent implements OnInit {
   constructor
     (
       private clienteApi: ClienteService,
-      private router: Router
+      private router: Router,
+      private snackBar: MatSnackBar,
     ) {}
 
   ngOnInit(): void {
@@ -29,5 +31,23 @@ export class ListarClientesComponent implements OnInit {
     this.router.navigate(['clientes/cadastro']);
   }
     
+
+  editarCliente = (email: string) => {
+    console.log(email);
+    this.router.navigate([`clientes/cadastro/${email}`]);
+  }
+
+  excluirCliente = (email: string) => {
+    console.log(email);
+    this.clienteApi.excluirCliente(email).subscribe(
+      success => {
+        this.snackBar.open("Cliente Excluído", "Certo!");
+        this.clienteApi.listarClientes().subscribe((res) => {
+          this.clientes = res;
+        });
+      },
+      err => this.snackBar.open("Erro ao excluir", "OKS!")
+    );  
+  }
   
 }

@@ -28,12 +28,13 @@
   </ng-container>
 
   <ng-container matColumnDef="acoes">
+    
     <mat-header-cell *matHeaderCellDef style="width:180px"> Ações </mat-header-cell>
     <mat-cell *matCellDef="let row" style="width:180px">
-      <button mat-raised-button color="accent" class="me-2">
+      <button mat-raised-button color="accent" class="me-2" (click)="editarCliente(row.email)">
         Editar
       </button>
-      <button mat-raised-button color="warn" class="">
+      <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirCliente(row.email)">
         Excluir
       </button>
     </mat-cell>
