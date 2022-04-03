@@ -1,0 +1,129 @@
+<div class="container" style="color: black;">
+
+    <mat-card>
+        <mat-card-title>Cadastro de Autores</mat-card-title>
+        <mat-card-subtitle>Vefique seu dados corretamente!</mat-card-subtitle>
+
+        <div class="card-body">
+            <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="isni" class="mb-2"><strong style="font-size: large; ">ISNI</strong></label>
+                  
+                    <input 
+                        type="text" 
+                        name="isni" 
+                        id="isni" 
+                        class="form-control" 
+                        [(ngModel)]="autor.isni" 
+                        formControlName="isni"
+                        appIsnimask   
+                    >
+                    <div class="row">
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.isni.touched || submitted) && registerFormControl.isni.errors?.required">
+                            ISNI obrigatório
+                        </span>
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.isni.touched || submitted) && (autor.isni.toString().length < 16 || autor.isni.toString().length > 16)">
+                            Número de caracteres para o ISNI é 16
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nome" class="mb-2 mt-2"><strong style="font-size: large; ">Nome</strong></label>
+                  
+                    <input 
+                        type="text" 
+                        name="nome" 
+                        id="nome" 
+                        class="form-control" 
+                        [(ngModel)]="autor.nome" 
+                        formControlName="nome"
+                        placeholder="Clarisse De Assis"
+                        maxlength="50"
+                    >
+                    <div class="row">
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.nome.touched || submitted) && registerFormControl.nome.errors?.required">
+                            Nome obrigatório
+                        </span>
+                        <span class="alert alert-success mt-2"
+                            *ngIf="autor.nome.length >= 50">
+                            Número de caracteres máximo para o nome é 50
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-2"><strong style="font-size: large; ">Email</strong></label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        formControlName="email" 
+                        [(ngModel)]="autor.email"
+                        placeholder="exemplo@email.com"
+                    >
+                        <div class="row">
+                            <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                            Email obrigatório
+                        </span>
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                            Escreva um email válido
+                        </span>
+                    </div>
+                    
+                    
+                </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-2"><strong style="font-size: large; ">Data De Nascimento</strong></label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        formControlName="dataDeNascimento" 
+                        [(ngModel)]="autor.dataDeNascimento"
+                        
+                    >
+                    <div class="row">
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.dataDeNascimento.touched || submitted) && registerFormControl.dataDeNascimento.errors?.required">
+                            Data obrigatória
+                        </span>
+                    </div>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label class="mb-2 mt-2"><strong style="font-size: large; ">Biografia</strong></label>
+                    <textarea
+                        class="form-control" 
+                        formControlName="biografia" 
+                        [(ngModel)]="autor.biografia"
+                        maxlength="200"
+                        rows="3"
+                    >
+                        Biografia. Máximo 200 cararacteres.
+                    </textarea>
+                    <div class="row">
+                        <span class="alert alert-danger mt-2"
+                            *ngIf="(registerFormControl.biografia.touched || submitted) && registerFormControl.biografia.errors?.required">
+                            Biografia obrigatória
+                        </span>
+                        <span class="alert alert-success mt-2"
+                            *ngIf="autor.biografia.length >= 200">
+                            Número de caracteres máximo para o biografia é 200
+                        </span>
+                    </div>
+                   
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <mat-card-actions>
+                        <button mat-raised-button  type="submit">{{textoBotao}}</button>
+                      </mat-card-actions>
+                </div>
+            </form>
+        </div>
+       
+      </mat-card>
+    

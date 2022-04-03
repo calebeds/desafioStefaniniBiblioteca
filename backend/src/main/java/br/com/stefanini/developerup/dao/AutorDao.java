@@ -33,8 +33,8 @@ public class AutorDao {
 
     @Transactional
     public void editar(AutorDto autor, long isni) {
-        int updatedAuthors = Autor.update("isni = ?1, nome = ?2, email = ?3, dataDeNascimento = ?4, biografia = ?5", 
-            autor.getIsni(), autor.getNome(), autor.getEmail(), autor.getDataDeNascimento(), autor.getBiografia());
+        int updatedAuthors = Autor.update("isni = ?1, nome = ?2, email = ?3, dataDeNascimento = ?4, biografia = ?5 where isni =?6", 
+            autor.getIsni(), autor.getNome(), autor.getEmail(), autor.getDataDeNascimento(), autor.getBiografia(), isni);
         
         if(updatedAuthors <= 0) { //Se não houver nenhum a ser editado
              throw new NotFoundException();

@@ -17,11 +17,16 @@
                         [(ngModel)]="cliente.nome" 
                         formControlName="nome"
                         placeholder="Nome Completo Fulonado Da Silva"
+                        maxlength="50"
                     >
                     <div class="row">
                         <span class="alert alert-danger mt-2"
                             *ngIf="(registerFormControl.nome.touched || submitted) && registerFormControl.nome.errors?.required">
                             Nome obrigatório
+                        </span>
+                        <span class="alert alert-success mt-2"
+                            *ngIf="cliente.nome.length >= 50">
+                            Número de caracteres máximo para o nome é 50
                         </span>
                     </div>
                 </div>

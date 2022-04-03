@@ -38,7 +38,13 @@ public class AutorService {
     }
 
     public void editar(AutorDto autor, String isni) {
-        dao.editar(autor, Long.parseLong(isni));
+        if(isni.length() <= 16) {
+            dao.editar(autor, Long.parseLong(isni));
+        } else {
+            throw new IllegalArgumentException("Não há 16 caracteres. Erro!!");
+        }
+        
+        //StringBuffer s = new StringBuffer();
     }
 
     public void deletar(String isni) {

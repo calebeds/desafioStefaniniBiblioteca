@@ -19,8 +19,18 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { PhonemaskDirective } from './global/diretivas/phonemask.directive';
+import { ListarAutoresComponent } from './views/autores/listar-autores/listar-autores.component';
+import { CadastroAutorComponent } from './views/autores/cadastro-autor/cadastro-autor.component';
+import { IsnimaskDirective } from './global/diretivas/isnimask.directive';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+//Pipe
+import { TruncatePipe } from './global/pipes/truncate.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +39,11 @@ import { PhonemaskDirective } from './global/diretivas/phonemask.directive';
     ListarClientesComponent,
     FooterComponent,
     CadastroClienteComponent,
-    PhonemaskDirective
+    PhonemaskDirective,
+    IsnimaskDirective,
+    ListarAutoresComponent,
+    CadastroAutorComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -44,7 +58,12 @@ import { PhonemaskDirective } from './global/diretivas/phonemask.directive';
     MatTableModule,
     MatSnackBarModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],

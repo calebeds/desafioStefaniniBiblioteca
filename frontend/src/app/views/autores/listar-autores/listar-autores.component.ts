@@ -1,18 +1,19 @@
-import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import Cliente from 'src/app/global/models/cliente.model';
-import { ClienteService as ClienteService } from '../clientes.service';
+import Autor from 'src/app/global/models/autor.model';
+import { AutoresService as AutorService } from '../autores.service';
 
 @Component({
-  templateUrl: './listar-clientes.component.html',
-  styleUrls: ['./listar-clientes.component.scss'],
+  selector: 'app-listar-autores',
+  templateUrl: './listar-autores.component.html',
+  styleUrls: ['./listar-autores.component.scss']
 })
-export class ListarClientesComponent implements OnInit {
+export class ListarAutoresComponent implements OnInit {
+  displayedColumns = ['ISNI','Nome', 'Email', 'Data de Nascimento', 'Biografia' ,'Ações'];
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -20,21 +21,19 @@ export class ListarClientesComponent implements OnInit {
   @ViewChild(MatSort) 
   sort!: MatSort;
 
-  clientes: Cliente[] = [];
-  
-  displayedColumns = ['nome', 'email', 'contato', 'acoes'];
+  public dataSource = new MatTableDataSource<Autor>([]);
 
-  public dataSource = new MatTableDataSource<Cliente>([]);
+ 
 
   constructor
     (
-      private clienteApi: ClienteService,
+      private autorApi: AutorService,
       private router: Router,
       private snackBar: MatSnackBar,
     ) {}
 
   ngOnInit(): void {
-    this.clienteApi.listarClientes().subscribe((res) => {
+    this.autorApi.listarAutores().subscribe((res) => {
       this.dataSource.data = res;
     });
   }
@@ -45,22 +44,22 @@ export class ListarClientesComponent implements OnInit {
   }
 
 
-  criarNovoCliente = () => {
-    this.router.navigate(['clientes/cadastro']);
+  criarNovoAutor = () => {
+    this.router.navigate(['autores/cadastro']);
   }
     
 
-  editarCliente = (email: string) => {
+  editarAutor = (email: string) => {
     console.log(email);
-    this.router.navigate([`clientes/cadastro/${email}`]);
+    this.router.navigate([`autores/cadastro/${email}`]);
   }
 
-  excluirCliente = (email: string) => {
-    console.log(email);
-    this.clienteApi.excluirCliente(email).subscribe(
+  excluirAutor = (isni: string) => {
+    console.log(isni);
+    this.autorApi.excluirAutor(isni).subscribe(
       success => {
-        this.snackBar.open("Cliente Excluído", "Certo!");
-        this.clienteApi.listarClientes().subscribe((res) => {
+        this.snackBar.open("Autor Excluído", "Certo!");
+        this.autorApi.listarAutores().subscribe((res) => {
           this.dataSource.data = res;
         });
       },
@@ -78,5 +77,4 @@ export class ListarClientesComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
 }
