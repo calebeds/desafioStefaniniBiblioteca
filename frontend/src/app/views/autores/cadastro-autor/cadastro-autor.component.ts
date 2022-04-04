@@ -39,7 +39,9 @@ export class CadastroAutorComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.fb.group({ //Reactive form | Validations
-      isni: ['', Validators.required],
+      isni: ['', [Validators.required,  
+      Validators.minLength(16),
+      Validators.pattern('[0-9]*')]],
       nome: ['', [Validators.required, Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
       dataDeNascimento: ['', [Validators.required]],
@@ -59,6 +61,8 @@ export class CadastroAutorComponent implements OnInit {
         }
       }
     );
+
+    console.log(this.registerFormControl.errors);
   }
 
   get registerFormControl() {

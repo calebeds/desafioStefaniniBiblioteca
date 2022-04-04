@@ -1,5 +1,6 @@
 .mat-drawer-container {
-  height: calc(100vh - 128px);
+  //height: calc(100vh - 128px);
+  height:100%;
 }
 
 ::ng-deep {
@@ -23,3 +24,4 @@
     }
   }
 }
+

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import Autor from 'src/app/global/models/autor.model';
 import { AutoresService as AutorService } from '../autores.service';
 
@@ -36,6 +36,7 @@ export class ListarAutoresComponent implements OnInit {
     this.autorApi.listarAutores().subscribe((res) => {
       this.dataSource.data = res;
     });
+    console.log(this.router.url); 
   }
 
   ngAfterViewInit() {
@@ -76,5 +77,9 @@ export class ListarAutoresComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  esconderBtn(): boolean {
+    return (this.router.url === '/autores/listar'); 
   }
 }

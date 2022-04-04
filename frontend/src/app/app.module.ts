@@ -10,6 +10,8 @@ import { LayoutComponent } from './core/components/layout/layout.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
 import { ListarClientesComponent } from './views/clientes/listar-clientes/listar-clientes.component';
+import { ListarLivrosComponent } from './views/livros/listar-livros/listar-livros.component';
+import { CadastroLivroComponent } from './views/livros/cadastro-livro/cadastro-livro.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,14 +24,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PhonemaskDirective } from './global/diretivas/phonemask.directive';
 import { ListarAutoresComponent } from './views/autores/listar-autores/listar-autores.component';
 import { CadastroAutorComponent } from './views/autores/cadastro-autor/cadastro-autor.component';
-import { IsnimaskDirective } from './global/diretivas/isnimask.directive';
+
+//Diretivas
+
+//Some mats
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatTabsModule } from '@angular/material/tabs';
 
 //Pipe
 import { TruncatePipe } from './global/pipes/truncate.pipe';
+
+
+
 
 @NgModule({
   declarations: [
@@ -40,10 +49,11 @@ import { TruncatePipe } from './global/pipes/truncate.pipe';
     FooterComponent,
     CadastroClienteComponent,
     PhonemaskDirective,
-    IsnimaskDirective,
     ListarAutoresComponent,
     CadastroAutorComponent,
-    TruncatePipe
+    TruncatePipe,
+    ListarLivrosComponent,
+    CadastroLivroComponent,
   ],
   imports: [
     CommonModule,
@@ -62,8 +72,8 @@ import { TruncatePipe } from './global/pipes/truncate.pipe';
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSortModule
-    
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

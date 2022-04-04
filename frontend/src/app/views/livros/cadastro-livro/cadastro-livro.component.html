@@ -1,0 +1,247 @@
+<mat-tab-group>
+    <mat-tab label="Cadastrar Novo Livro"> 
+        <div class="container" style="color: black;">
+            <mat-card>
+                <mat-card-title>Cadastro de Livros</mat-card-title>
+                <mat-card-subtitle>Vefique os dados corretamente!</mat-card-subtitle>
+        
+                <div class="card-body">
+                    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="isbn10" class="mb-2"><strong style="font-size: large; ">ISBN 10</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="isbn10" 
+                                id="isbn10" 
+                                class="form-control" 
+                                [(ngModel)]="livro.isbn10" 
+                                formControlName="isbn10"
+                                appIsnb10mask
+                                maxlength="10"   
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn10.touched || submitted) && registerFormControl.isbn10.errors?.required">
+                                    ISBN 10 obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn10.touched || submitted) && (livro.isbn10.toString().length < 10 || livro.isbn10.toString().length > 10)">
+                                        Número de caracteres para o ISNB10 é 10
+                                </span>
+    
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.isbn10.touched || submitted) && (registerFormControl.isbn10.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="isbn13" class="mb-2"><strong style="font-size: large; ">ISBN 13</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="isbn13" 
+                                id="isbn13" 
+                                class="form-control" 
+                                [(ngModel)]="livro.isbn13" 
+                                formControlName="isbn13"
+                                maxlength="13"   
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn10.touched || submitted) && registerFormControl.isbn10.errors?.required">
+                                    ISBN 13 obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn13.touched || submitted) && (livro.isbn13.toString().length < 13 || livro.isbn10.toString().length > 13)">
+                                        Número de caracteres para o ISNB13 é 13
+                                </span>
+    
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.isbn13.touched || submitted) && (registerFormControl.isbn13.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                            </div>
+                        </div>
+                         <div class="form-group mt-2">
+                            <label for="nome" class="mb-2"><strong style="font-size: large; ">Nome do Livro</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="isbn13" 
+                                id="isbn13" 
+                                class="form-control" 
+                                [(ngModel)]="livro.nome" 
+                                formControlName="nome"
+                                maxlength="50"
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.nome.touched || submitted) && registerFormControl.nome.errors?.required">
+                                    Nome é obrigatório
+                                </span>
+                                <span class="alert alert-success mt-2"
+                                    *ngIf="(registerFormControl.nome.touched || submitted) && (registerFormControl.nome.value.length >= 50)">
+                                    Número de caracteres para o nome do Livro é 50
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="autor" class="mb-2"><strong style="font-size: large; ">Autor (INSI)</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="autor" 
+                                id="autor" 
+                                class="form-control" 
+                                [(ngModel)]="livro.autor!.isni" 
+                                formControlName="autor" 
+                                maxlength="16"  
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.autor.touched || submitted) && registerFormControl.autor.errors?.required">
+                                    Autor obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.autor.touched || submitted) && (registerFormControl.autor.value.length < 16)">
+                                    Número de caracteres para o autor é 16
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.autor.touched || submitted) && (registerFormControl.autor.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="isni" class="mb-2"><strong style="font-size: large; ">Editora</strong></label>
+                          
+                            <input 
+                                type="editora" 
+                                name="editora" 
+                                id="editora" 
+                                class="form-control" 
+                                [(ngModel)]="livro.editora" 
+                                formControlName="editora"  
+                                maxlength="50" 
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.editora.touched || submitted) && registerFormControl.editora.errors?.required">
+                                    Editora obrigatório
+                                </span>
+                                <span class="alert alert-success mt-2"
+                                    *ngIf="(registerFormControl.editora.touched || submitted) && (registerFormControl.editora.value.length >= 50)">
+                                    Número de caracteres para a editora é 50
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-2">
+                            <label class="mb-2 mt-2"><strong style="font-size: large; ">Ano de Publicação</strong></label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                formControlName="anoDePublicacao" 
+                                [(ngModel)]="livro.anoDePublicacao"
+                                placeholder="Digite o ano"
+                                maxlength="4"
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.anoDePublicacao.touched || submitted) && registerFormControl.anoDePublicacao.errors?.required">
+                                    Ano de Publicação obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.anoDePublicacao.touched || submitted)  && registerFormControl.anoDePublicacao.errors?.min">
+                                    Quantidade de exemplares tem de ter 4 dígitos
+                                </span>
+
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.anoDePublicacao.touched || submitted) && (registerFormControl.anoDePublicacao.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                               
+                            </div>
+                            
+                            {{registerForm.valid}}
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label class="mb-2 mt-2"><strong style="font-size: large; ">Exemplares</strong></label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                formControlName="qtdDeExemplares" 
+                                [(ngModel)]="livro.qtdDeExemplares"
+                                placeholder="Digite a quantidade de exemplares"
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.qtdDeExemplares.touched || submitted) && registerFormControl.qtdDeExemplares.errors?.required">
+                                    Quantidade de exemplares obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.qtdDeExemplares.touched || submitted)  && registerFormControl.qtdDeExemplares.errors?.min">
+                                    Quantidade de exemplares deve ser maior que 0
+                                </span>
+
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.qtdDeExemplares.touched || submitted) && (registerFormControl.qtdDeExemplares.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                               
+                            </div>
+                            
+                            {{registerForm.valid}}
+                        </div>
+                        
+                        <hr/>
+                        <div class="form-group ">
+                            <mat-card-actions>
+                                <button mat-raised-button  type="submit">{{textoBotao}}</button>
+                              </mat-card-actions>
+                        </div>
+                    </form>
+                </div>
+               
+            </mat-card>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Buscar Isni de Autores">  <app-listar-autores></app-listar-autores>  </mat-tab>
+    <mat-tab label="Validar ISBN"> 
+        <form class="form-isbn">
+            <mat-form-field class="isbn-full-width mt-3" appearance="fill">
+              <mat-label>Digite o ISBN</mat-label>
+              <input matInput #message maxlength="13" placeholder="ISBN10 ou ISBN13">
+              <mat-hint align="start"><strong>Máximo 13 dígitos</strong> </mat-hint>
+              <mat-hint align="end">{{message.value.length}} / 13</mat-hint>
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-raised-button  type="button"  (click)="validarNaApi()">Validar</button>
+            </mat-card-actions>
+
+            
+                <div class="row form-isbn">
+                    <span class="alert alert-success mt-2"
+                        *ngIf="mostrarMensagensSucesso">
+                        ISBN 10: {{respostaApi.isbn_10[0]}}
+                    </span>
+                    <span class="alert alert-success mt-2"
+                        *ngIf="mostrarMensagensSucesso">
+                        ISBN 13: {{respostaApi.isbn_13[0]}}
+                    </span>
+                    <span class="alert alert-success mt-2"
+                        *ngIf="mostrarMensagensSucesso">
+                        Título do Livro: {{respostaApi.title}}
+                    </span>
+                </div>
+
+           
+
+          </form>
+              
+    </mat-tab>
+  </mat-tab-group>
+  

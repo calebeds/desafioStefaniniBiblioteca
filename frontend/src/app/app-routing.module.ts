@@ -5,6 +5,8 @@ import { ListarAutoresComponent } from './views/autores/listar-autores/listar-au
 import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
 import { ListarClientesComponent } from './views/clientes/listar-clientes/listar-clientes.component';
 import { HomeComponent } from './views/home/home.component';
+import { CadastroLivroComponent } from './views/livros/cadastro-livro/cadastro-livro.component';
+import { ListarLivrosComponent } from './views/livros/listar-livros/listar-livros.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,18 @@ const routes: Routes = [
   {
     path: 'autores/cadastro/:id', 
     component: CadastroAutorComponent
+  },
+  {
+    path: 'livros/listar',
+    component: ListarLivrosComponent,
+  },
+  {
+    path: 'livros/cadastro',
+    component: CadastroLivroComponent
+  },
+  {
+    path: 'livros/cadastro/:id', 
+    component: CadastroLivroComponent
   }
   
 ];

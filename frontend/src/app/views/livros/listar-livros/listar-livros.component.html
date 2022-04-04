@@ -1,0 +1,80 @@
+<div class="w-100 mb-3" style="display: table-cell; width: 490px;">
+    <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoLivro()">
+      Novo Livro
+    </button>
+  
+    <mat-form-field appearance="standard">
+      <mat-label>Pesquisar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Mil e Uma Noites" #input class="col-12">
+    </mat-form-field>
+  
+  </div>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  
+    <!-- User name Definition -->
+    <ng-container matColumnDef="isbn10">
+      <mat-header-cell *matHeaderCellDef> <strong style="font-size: medium;">ISBN10</strong> </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.isbn10}} </mat-cell>
+    </ng-container>
+  
+    <!-- Age Definition -->
+    <ng-container matColumnDef="isbn13">
+      <mat-header-cell *matHeaderCellDef> <strong style="font-size: medium;">ISBN13</strong> </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.isbn13}} </mat-cell>
+    </ng-container>
+  
+    <!-- Title Definition -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Contato</strong>  </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nome}} </mat-cell>
+    </ng-container>
+
+       <!-- Title Definition -->
+    <ng-container matColumnDef="autor">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Autor (ISNI)</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.autor === null ? '' :row.autor.insi }} </mat-cell>
+      </ng-container>
+
+       <!-- Title Definition -->
+    <ng-container matColumnDef="editora">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Editora</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.editora}} </mat-cell>
+      </ng-container>
+
+       <!-- Title Definition -->
+    <ng-container matColumnDef="anoDePublicacao">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Ano De Publicação</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.anoDePublicacao}} </mat-cell>
+      </ng-container>
+
+       <!-- Title Definition -->
+    <ng-container matColumnDef="qtdDeExemplares">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Exemplares</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.qtdDeExemplares}} </mat-cell>
+      </ng-container>
+  
+    <ng-container matColumnDef="acoes">
+      
+      <mat-header-cell *matHeaderCellDef style="width:180px"><strong style="font-size: medium;">Ações</strong>  </mat-header-cell>
+      <mat-cell *matCellDef="let row" style="width:180px">
+        <button mat-raised-button color="accent" class="me-2" (click)="editarLivro(row.isbn10)">
+          Editar
+        </button>
+        <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirLivro(row.isbn10)">
+          Excluir
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Ainda não há Livros :(</td>
+    </tr>
+  
+  </mat-table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 7]" aria-label="Select page of users"></mat-paginator>

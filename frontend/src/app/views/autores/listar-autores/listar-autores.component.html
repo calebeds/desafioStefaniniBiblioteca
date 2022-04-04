@@ -1,6 +1,6 @@
 <div class="w-100 mb-3" style="display: table-cell; width: 490px;">
 
-  <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoAutor() ">
+  <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoAutor()" *ngIf="esconderBtn()">
     Novo Autor
   </button>
 
@@ -16,10 +16,6 @@
   
  
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
-   
-    
-
     <!-- Header and Row Declarations -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
@@ -54,16 +50,24 @@
         <mat-cell *matCellDef="let row"> {{row.biografia | truncate:'10'}} </mat-cell>
       </ng-container>
   
-    <ng-container matColumnDef="Ações">
+    <ng-container matColumnDef="Ações" >
       
       <mat-header-cell *matHeaderCellDef style="width:180px"> <strong style="font-size: medium;">Ações</strong>  </mat-header-cell>
       <mat-cell *matCellDef="let row" style="width:180px">
-        <button mat-raised-button color="accent" class="me-2" (click)="editarAutor(row.isni)">
-          Editar
-        </button>
-        <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirAutor(row.isni)">
-          Excluir
-        </button>
+        <ng-container *ngIf="esconderBtn()">
+          <button mat-raised-button color="accent" class="me-2" (click)="editarAutor(row.isni)" >
+            Editar
+          </button>
+        </ng-container>
+        <ng-container *ngIf="esconderBtn()">
+          <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirAutor(row.isni)">
+            Excluir
+          </button>
+      </ng-container>
+
+      <ng-container *ngIf="!esconderBtn()">
+        Somente Busca
+      </ng-container>
       </mat-cell>
     </ng-container>
    

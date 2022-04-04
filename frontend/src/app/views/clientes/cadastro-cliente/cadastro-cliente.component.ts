@@ -13,7 +13,7 @@ import Cliente from '../../../global/models/cliente.model';import { ActivatedRou
 export class CadastroClienteComponent implements OnInit {
 
   id!: string;
-  registerForm!: FormGroup;
+  registerForm!: FormGroup; 
   submitted = false;
   textoBotao: string = 'Cadastrar';
 
