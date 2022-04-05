@@ -21,6 +21,7 @@ public class EmprestimoParser {
         dto.setIsbn(entidade.getIsbn());
         dto.setEmailCliente(entidade.getEmailCliente());
         dto.setDataDeInicio(entidade.getDataDeInicio());
+        dto.setDataDeEntrega(entidade.getDataDeEntrega());
         
         return dto;
     }
@@ -32,6 +33,7 @@ public class EmprestimoParser {
         emprestimo.setIsbn(entidade.getIsbn());
         emprestimo.setEmailCliente(entidade.getEmailCliente());
         emprestimo.setDataDeInicio(entidade.getDataDeInicio());
+        emprestimo.setDataDeEntrega(entidade.getDataDeEntrega());
         return emprestimo;
     }
 }

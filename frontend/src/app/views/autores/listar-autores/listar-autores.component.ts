@@ -50,9 +50,9 @@ export class ListarAutoresComponent implements OnInit {
   }
     
 
-  editarAutor = (email: string) => {
-    console.log(email);
-    this.router.navigate([`autores/cadastro/${email}`]);
+  editarAutor = (isni: string) => {
+    console.log(isni);
+    this.router.navigate([`autores/cadastro/${isni}`]);
   }
 
   excluirAutor = (isni: string) => {

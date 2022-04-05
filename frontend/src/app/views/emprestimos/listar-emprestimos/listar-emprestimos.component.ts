@@ -4,48 +4,45 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import Livro from 'src/app/global/models/livro.model';
-import { LivrosService } from '../livros.service';
+import Emprestimo from 'src/app/global/models/emprestimo.model';
+import { EmprestimosService } from '../emprestimos.service';
 
 @Component({
-  selector: 'app-listar-livros',
-  templateUrl: './listar-livros.component.html',
-  styleUrls: ['./listar-livros.component.scss']
+  selector: 'app-listar-emprestimos',
+  templateUrl: './listar-emprestimos.component.html',
+  styleUrls: ['./listar-emprestimos.component.scss']
 })
-export class ListarLivrosComponent implements OnInit {
+export class ListarEmprestimosComponent implements OnInit {
 
-  
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   @ViewChild(MatSort) 
   sort!: MatSort;
 
-  livros: Livro[] = [];
+  emprestimos: Emprestimo[] = [];
   
   displayedColumns = 
     [
-      'isbn10',
-      'isbn13',
-      'nome',
-      'autor',
-      'editora',
-      'anoDePublicacao',
-      'qtdDeExemplares', 
+      'id',
+      'emailCliente',
+      'isbn',
+      'dataDeInicio',
+      'dataDeEntrega',
       'acoes'
     ];
 
-  public dataSource = new MatTableDataSource<Livro>([]);
+  public dataSource = new MatTableDataSource<Emprestimo>([]);
 
   constructor
     (
-      private livroApi: LivrosService,
+      private emprestimoApi: EmprestimosService,
       private router: Router,
       private snackBar: MatSnackBar,
     ) {}
 
   ngOnInit(): void {
-    this.livroApi.listarLivros().subscribe((res) => {
+    this.emprestimoApi.listarEmprestimos().subscribe((res) => {
       this.dataSource.data = res;
     });
   }
@@ -56,26 +53,26 @@ export class ListarLivrosComponent implements OnInit {
   }
 
 
-  criarNovoLivro = () => {
-    this.router.navigate(['livros/cadastro']);
+  criarNovoEmprestimo = () => {
+    this.router.navigate(['emprestimos/cadastro']);
   }
     
 
-  editarLivro = (email: string) => {
-    console.log(email);
-    this.router.navigate([`livros/cadastro/${email}`]);
+  editarEmprestimo = (id: string) => {
+    console.log(id);
+    this.router.navigate([`emprestimos/cadastro/${id}`]);
   }
 
-  excluirLivro = (email: string) => {
+  excluirEmprestimo = (email: string) => {
     console.log(email);
-    this.livroApi.excluirLivro(email).subscribe(
+    this.emprestimoApi.excluirEmprestimo(email).subscribe(
       success => {
-        this.snackBar.open("Livro Excluído", "Certo!");
-        this.livroApi.listarLivros().subscribe((res) => {
+        this.snackBar.open("Livro Devolvido", "Certo!");
+        this.emprestimoApi.listarEmprestimos().subscribe((res) => {
           this.dataSource.data = res;
         });
       },
-      err => this.snackBar.open("Erro ao excluir", "OKS!")
+      err => this.snackBar.open("Erro ao devolver", "OKS!")
     );  
   }
 
@@ -90,8 +87,5 @@ export class ListarLivrosComponent implements OnInit {
     }
   }
 
-  esconderBtn(): boolean {
-    return (this.router.url === '/livros/listar'); 
-  }
 
 }

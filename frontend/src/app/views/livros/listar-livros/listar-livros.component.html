@@ -1,5 +1,5 @@
 <div class="w-100 mb-3" style="display: table-cell; width: 490px;">
-    <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoLivro()">
+    <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoLivro()" *ngIf="esconderBtn()">
       Novo Livro
     </button>
   
@@ -36,7 +36,7 @@
        <!-- Title Definition -->
     <ng-container matColumnDef="autor">
         <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Autor (ISNI)</strong>  </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ row.autor === null ? '' :row.autor.insi }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ row.autor == null ? row.autor : row.autor.isni }} </mat-cell>
       </ng-container>
 
        <!-- Title Definition -->
@@ -61,12 +61,16 @@
       
       <mat-header-cell *matHeaderCellDef style="width:180px"><strong style="font-size: medium;">Ações</strong>  </mat-header-cell>
       <mat-cell *matCellDef="let row" style="width:180px">
-        <button mat-raised-button color="accent" class="me-2" (click)="editarLivro(row.isbn10)">
+        <button mat-raised-button color="accent" class="me-2" (click)="editarLivro(row.isbn10)" *ngIf="esconderBtn()">
           Editar
         </button>
-        <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirLivro(row.isbn10)">
+        <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirLivro(row.isbn10)" *ngIf="esconderBtn()">
           Excluir
         </button>
+        <ng-container *ngIf="!esconderBtn()">
+          Somente Busca
+        </ng-container>
+
       </mat-cell>
     </ng-container>
   

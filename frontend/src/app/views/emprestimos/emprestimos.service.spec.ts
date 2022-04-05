@@ -3,17 +3,17 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { LivrosService } from './livros.service';
+import { EmprestimosService } from './emprestimos.service';
 
-describe('LivrosService', () => {
-  let service: LivrosService;
+describe('EmprestimosService', () => {
+  let service: EmprestimosService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    service = TestBed.inject(LivrosService);
+    service = TestBed.inject(EmprestimosService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -21,7 +21,7 @@ describe('LivrosService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('>> listarLivros | deve retornar Livros[]', () => {
+  it('>> listarEmprestimos | deve retornar Emprestimos[]', () => {
     const expectedData = [
       {
         posicao: 0,
@@ -32,11 +32,11 @@ describe('LivrosService', () => {
       },
     ];
 
-    // service.listarLivros().subscribe((res) => {
+    // service.listarEmprestimos().subscribe((res) => {
     //   expect(res).toEqual(expectedData);
     // });
 
-    const req = httpMock.expectOne('http://localhost:8080/api/cliente');
+    const req = httpMock.expectOne('http://localhost:8080/api/emprestimo');
     expect(req.request.method).toBe('GET');
     req.flush(expectedData);
   });

@@ -9,6 +9,7 @@ import Cliente from 'src/app/global/models/cliente.model';
 import { ClienteService as ClienteService } from '../clientes.service';
 
 @Component({
+  selector: 'app-listar-clientes',
   templateUrl: './listar-clientes.component.html',
   styleUrls: ['./listar-clientes.component.scss'],
 })
@@ -77,6 +78,10 @@ export class ListarClientesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  esconderBtn(): boolean {
+    return (this.router.url === '/clientes/listar'); 
   }
   
 }

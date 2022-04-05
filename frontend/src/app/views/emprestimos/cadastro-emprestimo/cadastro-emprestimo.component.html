@@ -1,0 +1,116 @@
+<mat-tab-group>
+    <mat-tab label="Cadastrar Novo Livro"> 
+        <div class="container" style="color: black;">
+            <mat-card>
+                <mat-card-title>Cadastro de Emprestimos</mat-card-title>
+                <mat-card-subtitle>Verifique os dados corretamente!</mat-card-subtitle>
+        
+                <div class="card-body">
+                    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="isbn" class="mb-2"><strong style="font-size: large; ">ISBN</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="isbn" 
+                                id="isbn" 
+                                class="form-control" 
+                                [(ngModel)]="emprestimo.isbn" 
+                                formControlName="isbn"
+                                maxlength="10"   
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn.touched || submitted) && registerFormControl.isbn.errors?.required">
+                                    ISBN obrigatório
+                                </span>
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.isbn.touched || submitted) && (emprestimo.isbn.toString().length < 10 || emprestimo.isbn.toString().length > 10)">
+                                        Número de caracteres para o ISNB10 é 10
+                                </span>
+    
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.isbn.touched || submitted) && (registerFormControl.isbn.errors?.pattern)">
+                                    Digite apenas números
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailCliente" class="mb-2 mt-2"><strong style="font-size: large; ">Email</strong></label>
+                          
+                            <input 
+                                type="text" 
+                                name="emailCliente" 
+                                id="isbn" 
+                                class="form-control" 
+                                [(ngModel)]="emprestimo.emailCliente" 
+                                formControlName="emailCliente"
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.emailCliente.touched || submitted) && registerFormControl.emailCliente.errors?.required">
+                                    Email obrigatório
+                                </span>
+    
+                                <span class="alert alert-danger mt-2"
+                                *ngIf="(registerFormControl.emailCliente.touched || submitted) && (registerFormControl.emailCliente.errors?.email)">
+                                    Digite um email válido
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataDeInicio" class="mb-2 mt-2"><strong style="font-size: large; ">Data de início</strong></label>
+                          
+                            <input 
+                                type="date" 
+                                name="dataDeInicio" 
+                                id="dataDeInicio" 
+                                class="form-control" 
+                                [(ngModel)]="emprestimo.dataDeInicio" 
+                                formControlName="dataDeInicio"
+                            >
+                            <div class="row">
+                                <span class="alert alert-danger mt-2"
+                                    *ngIf="(registerFormControl.dataDeInicio.touched || submitted) && registerFormControl.dataDeInicio.errors?.required">
+                                    Data de início obrigatória
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataDeEntrega" class="mb-2 mt-2"><strong style="font-size: large; ">Data de entrega (Opcional)</strong></label>
+                          
+                            <input 
+                                type="date" 
+                                name="dataDeEntrega" 
+                                id="dataDeEntrega" 
+                                class="form-control" 
+                                [(ngModel)]="emprestimo.dataDeEntrega" 
+                                formControlName="dataDeEntrega"
+                                placeholder="Opcional"
+                            >
+                        </div>
+                        
+                        <hr/>
+                        <div class="form-group ">
+                            <mat-card-actions>
+                                <button mat-raised-button  type="submit">{{textoBotao}}</button>
+                              </mat-card-actions>
+                        </div>
+                    </form>
+                </div>
+               
+            </mat-card>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Buscar Isbn de Livros">  
+        <app-listar-livros></app-listar-livros>  
+    </mat-tab>
+    <mat-tab label="Buscar Email Cliente"> 
+        <app-listar-clientes></app-listar-clientes>
+    </mat-tab>
+  </mat-tab-group>
+  

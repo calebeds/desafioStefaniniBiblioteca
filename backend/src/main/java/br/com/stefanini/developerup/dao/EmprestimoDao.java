@@ -27,7 +27,7 @@ public class EmprestimoDao {
     }
 
     public List<Emprestimo> listarUmEmprestimo(long id){ //Only one 
-      return Emprestimo.list("isni", id);
+      return Emprestimo.list("id", id);
     }
 
     @Transactional
@@ -95,7 +95,7 @@ public class EmprestimoDao {
         }
 
         int updatedEmprestimos = Emprestimo.update("emailCliente = ?1, isbn = ?2, dataDeInicio = ?3, dataDeEntrega = ?4 where id = ?5", 
-            emprestimo.getEmailCliente(), emprestimo.getDataDeInicio(), emprestimo.getDataDeEntrega());
+            emprestimo.getEmailCliente(), emprestimo.getIsbn(), emprestimo.getDataDeInicio(), emprestimo.getDataDeEntrega(), emprestimo.getId());
         
         if(updatedEmprestimos <= 0) { //Se não houver nenhum a ser editado
              throw new NotFoundException();

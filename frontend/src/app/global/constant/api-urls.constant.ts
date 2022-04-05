@@ -4,7 +4,8 @@ const ApiUrl = {
   BASE,
   clientes: BASE + '/cliente',
   autores: BASE + '/autor',
-  livros: BASE + '/livro'
+  livros: BASE + '/livro',
+  emprestimos: BASE + '/emprestimo'
 };
 
 export default ApiUrl;

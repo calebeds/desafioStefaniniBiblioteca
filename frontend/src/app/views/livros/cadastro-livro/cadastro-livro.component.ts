@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EventManager } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import Autor from 'src/app/global/models/autor.model';
 import Livro from 'src/app/global/models/livro.model';
 import { LivrosService } from '../livros.service';
 
@@ -43,6 +44,14 @@ export class CadastroLivroComponent implements OnInit {
 
   };
 
+  autor: Autor =  {
+    isni: 0,
+    nome: '',
+    email: '',
+    dataDeNascimento: '',
+    biografia: ''
+  }
+
   
 
   constructor(
@@ -64,7 +73,7 @@ export class CadastroLivroComponent implements OnInit {
       ],
       nome: ['', [Validators.required, Validators.maxLength(50)]],
       autor: ['', [
-        Validators.required, Validators.maxLength(50)]
+        Validators.required]
       ],
       editora: ['', [Validators.required, Validators.maxLength(50)] ],
       anoDePublicacao: ['', [Validators.required, Validators.min(1000)]],
@@ -77,8 +86,20 @@ export class CadastroLivroComponent implements OnInit {
           this.textoBotao = 'Editar';
           this.id = params['id'];
           this.livroService.listarUmLivro(this.id).subscribe(
-            a => {
-              this.livro = a;
+            l => {
+              if(l.autor == null) {
+                this.livro.autor = this.autor;
+                this.livro.isbn10 = l.isbn10;
+                this.livro.isbn13 = l.isbn13;
+                this.livro.nome = l.nome;
+                this.livro.editora = l.editora;
+                this.livro.anoDePublicacao = l.anoDePublicacao;
+                this.livro.qtdDeExemplares = l.qtdDeExemplares;
+              } else {
+                this.livro = l;
+              }
+              
+              
             }
           );
         }

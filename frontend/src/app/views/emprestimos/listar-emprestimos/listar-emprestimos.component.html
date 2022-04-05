@@ -1,0 +1,69 @@
+<div class="w-100 mb-3" style="display: table-cell; width: 490px;">
+    <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoEmprestimo()">
+      Novo Emprestimo
+    </button>
+  
+    <mat-form-field appearance="standard">
+      <mat-label>Pesquisar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Email de Fulano Tal" #input class="col-12">
+    </mat-form-field>
+  
+  </div>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  
+    <!-- User name Definition -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> <strong style="font-size: medium;">ID</strong> </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="emailCliente">
+      <mat-header-cell *matHeaderCellDef> <strong style="font-size: medium;">Email do Cliente </strong> </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.emailCliente}} </mat-cell>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="isbn">
+      <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">ISBN</strong>  </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.isbn}} </mat-cell>
+    </ng-container>
+
+       
+    <ng-container matColumnDef="dataDeInicio">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Data de Início do Empréstimo</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.dataDeInicio | date:"dd/MM/yyyy" }}  </mat-cell>
+      </ng-container>
+
+       
+    <ng-container matColumnDef="dataDeEntrega">
+        <mat-header-cell *matHeaderCellDef><strong style="font-size: medium;">Data de Entrega</strong>  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.dataDeEntrega == null || row.dataDeEntrega === '' ? row.dataDeEntrega : row.dataDeEntrega | date:'dd/MM/yyyy'  }} </mat-cell>
+        <!-- == null || row.dataDeEntrega === '' ? row.dataDeEntrega : row.dataDeEntrega -->
+      </ng-container>
+  
+    <ng-container matColumnDef="acoes">
+      
+      <mat-header-cell *matHeaderCellDef style="width:180px"><strong style="font-size: medium;">Ações</strong>  </mat-header-cell>
+      <mat-cell *matCellDef="let row" style="width:180px">
+        <button mat-raised-button color="accent" class="me-2" (click)="editarEmprestimo(row.id)">
+          Editar
+        </button>
+        <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirEmprestimo(row.id)">
+          Devolver
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">Ainda não há Emprestimos :(</td>
+    </tr>
+  
+  </mat-table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 7]" aria-label="Select page of users"></mat-paginator>

@@ -36,6 +36,8 @@ import {MatTabsModule } from '@angular/material/tabs';
 
 //Pipe
 import { TruncatePipe } from './global/pipes/truncate.pipe';
+import { ListarEmprestimosComponent } from './views/emprestimos/listar-emprestimos/listar-emprestimos.component';
+import { CadastroEmprestimoComponent } from './views/emprestimos/cadastro-emprestimo/cadastro-emprestimo.component';
 
 
 
@@ -54,6 +56,8 @@ import { TruncatePipe } from './global/pipes/truncate.pipe';
     TruncatePipe,
     ListarLivrosComponent,
     CadastroLivroComponent,
+    ListarEmprestimosComponent,
+    CadastroEmprestimoComponent
   ],
   imports: [
     CommonModule,

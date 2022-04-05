@@ -26,6 +26,7 @@
                         <span class="alert alert-danger mt-2"
                             *ngIf="(registerFormControl.isni.touched || submitted) && (autor.isni.toString().length < 16 || autor.isni.toString().length > 16)">
                             Número de caracteres para o ISNI é 16
+                            {{autor.isni.toString().length}}
                         </span>
 
                         <span class="alert alert-danger mt-2"

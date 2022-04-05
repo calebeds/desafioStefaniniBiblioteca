@@ -1,5 +1,5 @@
 <div class="w-100 mb-3" style="display: table-cell; width: 490px;">
-  <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoCliente()">
+  <button mat-raised-button color="primary" class="col-12 mb-2" (click)="criarNovoCliente()" *ngIf="esconderBtn()">
     Novo Cliente
   </button>
 
@@ -37,13 +37,19 @@
     
     <mat-header-cell *matHeaderCellDef style="width:180px"><strong style="font-size: medium;">Ações</strong>  </mat-header-cell>
     <mat-cell *matCellDef="let row" style="width:180px">
-      <button mat-raised-button color="accent" class="me-2" (click)="editarCliente(row.email)">
+      <button mat-raised-button color="accent" class="me-2" (click)="editarCliente(row.email)" *ngIf="esconderBtn()">
         Editar
       </button>
-      <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirCliente(row.email)">
+      <button mat-raised-button color="warn" class="me-2 px-2" (click)="excluirCliente(row.email)" *ngIf="esconderBtn()">
         Excluir
       </button>
+
+      <ng-container *ngIf="!esconderBtn()">
+        Somente Busca
+      </ng-container>
     </mat-cell>
+
+   
   </ng-container>
 
   <!-- Row shown when there is no matching data. -->

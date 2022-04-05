@@ -4,6 +4,8 @@ import { CadastroAutorComponent } from './views/autores/cadastro-autor/cadastro-
 import { ListarAutoresComponent } from './views/autores/listar-autores/listar-autores.component';
 import { CadastroClienteComponent } from './views/clientes/cadastro-cliente/cadastro-cliente.component';
 import { ListarClientesComponent } from './views/clientes/listar-clientes/listar-clientes.component';
+import { CadastroEmprestimoComponent } from './views/emprestimos/cadastro-emprestimo/cadastro-emprestimo.component';
+import { ListarEmprestimosComponent } from './views/emprestimos/listar-emprestimos/listar-emprestimos.component';
 import { HomeComponent } from './views/home/home.component';
 import { CadastroLivroComponent } from './views/livros/cadastro-livro/cadastro-livro.component';
 import { ListarLivrosComponent } from './views/livros/listar-livros/listar-livros.component';
@@ -51,6 +53,18 @@ const routes: Routes = [
   {
     path: 'livros/cadastro/:id', 
     component: CadastroLivroComponent
+  },
+  {
+    path: 'emprestimos/listar',
+    component: ListarEmprestimosComponent,
+  },
+  {
+    path: 'emprestimos/cadastro',
+    component: CadastroEmprestimoComponent
+  },
+  {
+    path: 'emprestimos/cadastro/:id', 
+    component: CadastroEmprestimoComponent
   }
   
 ];
