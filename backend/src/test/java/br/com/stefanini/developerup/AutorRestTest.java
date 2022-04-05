@@ -6,46 +6,44 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 
 /**
- * @author Danilo Dorgam
- * email danilodorgam@gmail.com
- * created 30/03/2022
+ * @author Calebe Oliveira
+ * email calebe.dso@gmail.com
+ * created 05/03/2022
  * @version 0.1.0
  */
 @QuarkusTest
-public class ClienteRestTest {
-    private final static String URL = "/api/cliente";
-    ClienteRestTestUtil ct = new ClienteRestTestUtil();
+public class AutorRestTest {
+    private final static String URL = "/api/autor";
+    AutorRestTestUtil at = new AutorRestTestUtil();
 
     @Test
-    public void testarListarBlocoIndicadorComSucesso(){
+    public void listarAutoresTest(){
         given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get(URL)
                 .then()
-                .statusCode(HttpStatus.SC_OK)
-                .body(matchesJsonSchemaInClasspath("schemas/JsonSchemaLista.json"));
+                .statusCode(HttpStatus.SC_OK);
     }
 
     @Test
-    public void listarUmClienteTest(){
+    public void listarUmAutorTest(){
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get(URL+"/maratona@stefanini.com")
+                .get(URL+"/2423429993642345")
                 .then()
                 .statusCode(HttpStatus.SC_OK);
     }
 
     @Test
-    public void inserirUmClienteTest(){
+    public void inserirUmAutorTest(){
          //Preparação do teste | Montando o corpo da requisição
-        String bodyInserir = ct.createBodyReq("Fulano Cliente", 
-            "emailcliente@gmail.com", "(21) 2222-2222", 0);
+        String bodyInserir = at.createBodyReq( 3333333333333333l , 
+            "Autor Bom", "autor@emailll.com", "2021-02-09", "Uma biografia muito boa");
         ////
 
         System.out.println(bodyInserir);
@@ -60,32 +58,28 @@ public class ClienteRestTest {
     }
 
     @Test
-    public void editarUmClienteTest(){
+    public void editarUmAutorTest(){
          //Preparação do teste | Montando o corpo da requisição de editar
-        String bodyEditar = ct.createBodyReq("Usuário Editado", 
-            "maratona@stefanini.com", "(21) 2222-2222", 0);
+         String bodyEditar = at.createBodyReq( 3333333333333333l , 
+            "Autor Mau", "autorfeio@emailll.com", "2021-02-09", "Uma biografia muito ruim");
         ////
-
-
-
-        System.out.println(bodyEditar);
 
         given()
                 .contentType(ContentType.JSON)
                 .body(bodyEditar)
                 .when()
-                .put(URL + "/maratona@stefanini.com")
+                .put(URL + "/3333333333333333")
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
     }
 
     @Test
-    public void excluirUmClienteTest(){
+    public void excluirUmAutorTest(){
 
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .delete(URL + "/calebe@stefanini.com")
+                .delete(URL + "/3333333333333333")
                 .then()
                 .statusCode(HttpStatus.SC_OK);
     }

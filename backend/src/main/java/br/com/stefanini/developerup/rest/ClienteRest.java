@@ -81,7 +81,7 @@ public class ClienteRest {
     @Path("{busca}")
     @DELETE
     @Operation(summary = "Deletar", description = "Deleta um cliente")
-    @APIResponse(responseCode = "201", description = "Cliente deletado",
+    @APIResponse(responseCode = "200", description = "Cliente deletado",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = ClienteDto.class))})
     public Response deletarCliente(@PathParam("busca") String busca)  {

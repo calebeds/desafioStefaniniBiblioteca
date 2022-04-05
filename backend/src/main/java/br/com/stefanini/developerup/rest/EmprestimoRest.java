@@ -82,7 +82,7 @@ public class EmprestimoRest {
     @Path("{id}")
     @DELETE
     @Operation(summary = "Deletar", description = "Deleta um autor")
-    @APIResponse(responseCode = "201", description = "autor deletado",
+    @APIResponse(responseCode = "200", description = "autor deletado",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = EmprestimoDto.class))})
     public Response deletarautor(@PathParam("id") long id)  {

@@ -82,7 +82,7 @@ public class LivroRest {
     @Path("{isbn}")
     @DELETE
     @Operation(summary = "Deletar", description = "Deleta um autor")
-    @APIResponse(responseCode = "201", description = "autor deletado",
+    @APIResponse(responseCode = "200", description = "Autor deletado",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = LivroDto.class))})
     public Response deletarautor(@PathParam("isbn") String isbn)  {
